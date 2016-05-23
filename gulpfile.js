@@ -4,10 +4,16 @@ var gulp = require('gulp'),
     istanbul = require('gulp-istanbul'),
     eslint = require('gulp-eslint'),
     beautify = require('gulp-jsbeautify'),
+    open = require('gulp-open'),
     del = require('del');
 
 gulp.task('default', ['clean', 'beautify', 'eslint', 'babel:src', 'babel:test', 'cover', 'mocha']);
 gulp.task('build', ['clean', 'eslint', 'babel:src']);
+
+gulp.task('coverage', () => {
+    gulp.src('coverage/lcov-report/index.html')
+        .pipe(open());
+});
 
 gulp.task('clean', () => {
     del.sync(['build', 'coverage', 'test-build']);

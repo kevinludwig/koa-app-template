@@ -4,7 +4,8 @@
   "description": "basic app template using koa",
   "scripts": {
       "start": "node app.js",
-      "test": "gulp"
+      "test": "gulp",
+      "coverage": "gulp coverage"
   },
   "keywords": [
     "koa"
@@ -36,6 +37,7 @@
     "gulp-istanbul": "^0.10.4",
     "gulp-mocha": "^2.2.0",
     "gulp-eslint": "^1.0.0",
+    "gulp-open": "^2.0.0",
     "gulp-jsbeautify": "^0.1.1",
     "gulp-babel": "^6.1.2",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
