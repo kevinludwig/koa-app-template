@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     mocha = require('gulp-mocha'),
     istanbul = require('gulp-istanbul'),
     eslint = require('gulp-eslint'),
-    beautify = require('gulp-beautify'),
+    beautify = require('gulp-jsbeautify'),
     del = require('del');
 
 gulp.task('default', ['clean', 'beautify', 'eslint', 'babel:src', 'babel:test', 'cover', 'mocha']);
@@ -16,8 +16,8 @@ gulp.task('clean', () => {
 gulp.task('beautify', ['clean'], () => {
     return gulp.src('./src/**/*.js')
         .pipe(beautify())
-        .pipe(gulp.dest('./src');
-});
+        .pipe(gulp.dest('./src'));
+}); 
 
 gulp.task('eslint', ['beautify'], () => {
     return gulp.src('./src/**/*.js')
@@ -35,7 +35,7 @@ gulp.task('babel:src', ['eslint'], () => {
     return gulp.src('./src/**/*.js')
         .pipe(babel({
             plugins: plugins
-        })
+        }))
         .pipe(gulp.dest('build'));
 });
 
@@ -43,7 +43,7 @@ gulp.task('babel:test', ['eslint'], () => {
     return gulp.src('./test/**/*.js')
         .pipe(babel({
             plugins: plugins
-        })
+        }))
         .pipe(gulp.dest('./test-build'));
 });
 
@@ -57,7 +57,7 @@ gulp.task('mocha', ['cover'], () => {
     return gulp.src('test-build/test/**/*.js')
         .pipe(mocha({
             bail: true
-        })
+        }))
         .pipe(istanbul.writeReports())
         .pipe(istanbul.enforceThresholds({
             thresholds: {
@@ -68,5 +68,5 @@ gulp.task('mocha', ['cover'], () => {
                     functions: 100
                 }
             }
-        });
+        }));
 });

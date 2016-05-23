@@ -9,7 +9,7 @@
   "keywords": [
     "koa"
   ],
-  "dependencies": [
+  "dependencies": { 
     "koa": "^1.2.0",
     "koa-router": "^2.1.0",
     "koa-bodyparser": "^2.1.0",
@@ -26,8 +26,8 @@
     "config": "^1.20.1",
     "winston": "^2.2.0",
     "restify-clients": "^1.2.1"
-  ],
-  "devDependencies": [
+  },
+  "devDependencies": {
     "del": "^2.2.0",
     "chai": "^3.5.0",
     "sinon": "^1.17.4",
@@ -38,8 +38,8 @@
     "gulp-eslint": "^1.0.0",
     "gulp-jsbeautify": "^0.1.1",
     "gulp-babel": "^6.1.2",
-    "babel-transform-es2015-modules-commonjs": "^6.8.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
     "babel-plugin-transform-runtime": "^6.8.0",
     "babel-runtime": "^6.6.1"
-  ]
+  }
 }

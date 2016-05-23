@@ -17,7 +17,7 @@ let app = Koa();
 app.use(errorHandler(function(e) {
     log.error(e);
     this.status = 500;
-});
+}));
 
 app.use(responseTime());
 app.use(accesslog());

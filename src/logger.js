@@ -7,6 +7,7 @@ export default new winston.Logger({
             logstash: true,
             timestamp: true,
             stderrLevels: ['debug', 'info', 'warn', 'error']
-        });
-    ]
+        })
+    ],
+    level: config.logLevel
 });
