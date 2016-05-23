@@ -5,6 +5,7 @@
   "scripts": {
       "start": "node app.js",
       "test": "gulp",
+      "build": "gulp build",
       "coverage": "gulp coverage"
   },
   "keywords": [
