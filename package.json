@@ -38,8 +38,8 @@
     "gulp-eslint": "^1.0.0",
     "gulp-jsbeautify": "^0.1.1",
     "gulp-babel": "^6.1.2",
-    "gulp-babel-transform-es2015-modules-commonjs": "^6.8.0",
-    "gulp-plugin-transform-runtime": "^6.8.0",
+    "babel-transform-es2015-modules-commonjs": "^6.8.0",
+    "babel-plugin-transform-runtime": "^6.8.0",
     "babel-runtime": "^6.6.1"
   ]
 }
