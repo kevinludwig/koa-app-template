@@ -44,7 +44,7 @@ gulp.task('babel:test', ['eslint'], () => {
         .pipe(babel({
             plugins: plugins
         }))
-        .pipe(gulp.dest('./test-build'));
+        .pipe(gulp.dest('./test-build/test'));
 });
 
 gulp.task('cover', ['babel:src', 'babel:test'], () => {
