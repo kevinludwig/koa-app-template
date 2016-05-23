@@ -16,7 +16,7 @@
     "koa-response-time": "^1.0.2",
     "koa-helmet": "^1.0.0",
     "koa-cors": "^0.0.16",
-    "koa-ping": "^0.1.0",
+    "koa-ping": "https://github.com/kevinludwig/koa-ping.git",
     "koa-toobusy": "^1.0.1",
     "koa-err": "^1.0.1",
     "koa-accesslog": "^0.0.2",
