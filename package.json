@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "basic app template using koa",
   "scripts": {
-      "start": "node app.js",
+      "start": "gulp build && node build/boot.js",
       "test": "gulp",
       "build": "gulp build",
       "coverage": "gulp coverage"
