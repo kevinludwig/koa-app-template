@@ -4,7 +4,8 @@
   "description": "basic app template using koa",
   "scripts": {
     "start": "node src/boot.js",
-    "test": "node_modules/gulp/bin/gulp.js",
+    "pretest": "node_modules/gulp/bin/gulp.js",
+    "test": "NODE_ENV=test nyc mocha",
     "coverage": "node_modules/gulp/bin/gulp.js coverage"
   },
   "keywords": [
@@ -29,11 +30,12 @@
     "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^4.0.0",
-    "gulp-istanbul": "^1.1.2",
     "gulp-jsbeautify": "^0.1.1",
-    "gulp-mocha": "^4.3.1",
     "gulp-nsp": "^2.4.2",
     "gulp-open": "^2.0.0",
+    "mocha": "^3.4.2",
+    "nock": "^9.0.13",
+    "nyc": "^11.0.2",
     "supertest": "^3.0.0"
   }
 }

@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     open = require('gulp-open'),
     del = require('del');
 
-gulp.task('default', ['clean', 'beautify', 'eslint', 'cover', 'mocha']);
+gulp.task('default', ['clean', 'beautify', 'eslint']);
 gulp.task('build', ['clean', 'eslint']);
 
 gulp.task('coverage', () => {
@@ -16,7 +16,7 @@ gulp.task('coverage', () => {
 });
 
 gulp.task('clean', () => {
-    del.sync(['build', 'coverage', 'test-build']);
+    del.sync(['coverage']);
 });
 
 gulp.task('nsp', ['clean'], (cb) => {
@@ -38,28 +38,4 @@ gulp.task('eslint', ['beautify'], () => {
         }))
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
-});
-
-gulp.task('cover', ['eslint'], () => {
-    return gulp.src('src/**/*.js')
-        .pipe(istanbul())
-        .pipe(gulp.dest('test-build'));
-});
-
-gulp.task('mocha', ['cover'], () => {
-    return gulp.src('test-build/test/**/*.js')
-        .pipe(mocha({
-            bail: true
-        }))
-        .pipe(istanbul.writeReports())
-        .pipe(istanbul.enforceThresholds({
-            thresholds: {
-                global: {
-                    statements: 100,
-                    branches: 90,
-                    lines: 100,
-                    functions: 100
-                }
-            }
-        }));
 });

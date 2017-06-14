@@ -30,7 +30,6 @@ app.use(helmet());
 app.use(bodyParser());
 app.use(convert(kcors()));
 app.use(convert(ping(config.prefix + '/ping')));
-
 app.use(routes);
 
 module.exports = () => {

@@ -1,13 +1,27 @@
 const fs = require('fs'),
+    config = require('config'),
+    request = require('superagent'),
     promisify = require('es6-promisify'),
     readFile = promisify(fs.readFile);
 
+function getQuote(sym) {
+    return request
+        .get(config.stockHost + config.stockPath)
+        .query({
+            quote: sym
+        });
+}
+
 module.exports = async(ctx) => {
-    const [packageJson, configJson] = await Promise.all([readFile('./package.json', 'utf-8'), readFile('./config/default.json', 'utf-8')]);
+    const [quote, pkg, conf] = await Promise.all([
+        getQuote(ctx.params.symbol),
+        readFile('./package.json', 'utf-8'),
+        readFile('./config/default.json', 'utf-8')
+    ]);
 
     ctx.body = {
-        id: this.params.id,
-        packageJson: packageJson,
-        config: configJson
+        quote,
+        pkg,
+        conf
     }
 }

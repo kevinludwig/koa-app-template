@@ -1,0 +1,4 @@
+{
+    "stockHost": "http://dev.markitondemand.com",
+    "stockPath": "/MODApis/Api/v2/Quote/json"
+}

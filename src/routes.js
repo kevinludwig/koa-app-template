@@ -6,6 +6,6 @@ let router = new Router({
     prefix: config.prefix
 });
 
-router.get('/info/:id', info);
+router.get('/info/:symbol', info);
 
 module.exports = router.routes();
