@@ -10,15 +10,14 @@ const Koa = require('koa'),
     accesslog = require('koa-accesslog'),
     config = require('config'),
     log = require('./logger'),
-    routes = require('./routes');
-
-let app = new Koa();
+    routes = require('./routes'),
+    app = new Koa();
 
 app.use(async(ctx, next) => {
     try {
         await next();
     } catch (ex) {
-        log.error(ex);
+        log.error(ex.message, ex.stack);
         ctx.status = 500;
     }
 });

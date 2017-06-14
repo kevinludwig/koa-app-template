@@ -4,13 +4,14 @@
         "text"
     ],
     "include": [
-        "src/**/*.js"
+        "src",
+        "test"
     ],
     "exclude": [
-        "test/**/*.js"
-    ], 
+        "src/boot.js"
+    ],
     "all": true,
-    "instrument": false,
+    "instrument": true,
     "check-coverage": true,
     "lines": 99,
     "statements": 99,

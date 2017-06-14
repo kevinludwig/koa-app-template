@@ -23,5 +23,5 @@ module.exports = async(ctx) => {
         quote,
         pkg,
         conf
-    }
+    };
 }
