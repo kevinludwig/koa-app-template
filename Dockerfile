@@ -1,4 +1,4 @@
-FROM node:6.2-wheezy
+FROM node:8-wheezy
 
 RUN mkdir -p /opt/koa-app-template
 WORKDIR /opt/koa-app-template
@@ -9,8 +9,8 @@ RUN npm install
 COPY config /opt/koa-app-template/config
 COPY src /opt/koa-app-template/src
 ADD gulpfile.js /opt/koa-app-template
-ADD .eslintrc /opt/koa-app-template
-RUN npm run build
+ADD .eslintrc.json /opt/koa-app-template
+ADD .nycrc /opt/koa-app-template
 
-EXPOSE 3000 
-CMD ["node", "build/boot.js"]
+EXPOSE 8080 
+CMD ["node", "src/boot.js"]
