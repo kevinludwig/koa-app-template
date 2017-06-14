@@ -1,10 +1,10 @@
 ### koa-app-template
 
-Basic app template with koa and gulp
+Basic app template with koa2 and gulp
 
 ### Setup
 
-Install [node 6.2](https://nodejs.org/en/download/current/') or better
+Install [node 8.0](https://nodejs.org/en/download/current/') or better
 
 ```
 npm install
@@ -14,12 +14,8 @@ npm start
 
 ### Docker setup
 
-* Install [Docker](https://www.docker.com/products/docker-toolbox)
-* Create a docker VM `docker-machine create --driver virtualbox default`
-* Put the following in your `.bash_profile`: `eval "$(docker-machine env default)"`
-* build a docker container for this project: `docker build -t koa-app-template`
-* run it: `docker run -i -t koa-app-template`
+1. Install [Docker for Mac](https://docs.docker.com/engine/installation/mac/)
+2. Build a docker container for this project: `docker-compose build`
+3. Run it: `docker-compose up`
+4. Check it out: [http://localhost:8080](http://localhost:10010)
 
-### TODO
-
-* Integrate the doc api middleware

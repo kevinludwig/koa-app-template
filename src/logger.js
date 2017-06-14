@@ -1,7 +1,7 @@
-import winston from 'winston'
-import config from 'config'
+const winston = require('winston'),
+    config = require('config');
 
-export default new winston.Logger({
+module.exports = new winston.Logger({
     transports: [
         new(winston.transports.Console)({
             logstash: true,

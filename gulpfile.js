@@ -1,5 +1,5 @@
 var gulp = require('gulp'),
-    babel = require('gulp-babel'),
+    nsp = require('gulp-nsp'),
     mocha = require('gulp-mocha'),
     istanbul = require('gulp-istanbul'),
     eslint = require('gulp-eslint'),
@@ -7,8 +7,8 @@ var gulp = require('gulp'),
     open = require('gulp-open'),
     del = require('del');
 
-gulp.task('default', ['clean', 'beautify', 'eslint', 'babel:src', 'babel:test', 'cover', 'mocha']);
-gulp.task('build', ['clean', 'eslint', 'babel:src']);
+gulp.task('default', ['clean', 'beautify', 'eslint', 'cover', 'mocha']);
+gulp.task('build', ['clean', 'eslint']);
 
 gulp.task('coverage', () => {
     gulp.src('coverage/lcov-report/index.html')
@@ -19,7 +19,13 @@ gulp.task('clean', () => {
     del.sync(['build', 'coverage', 'test-build']);
 });
 
-gulp.task('beautify', ['clean'], () => {
+gulp.task('nsp', ['clean'], (cb) => {
+    nsp({
+        package: __dirname + '/package.json'
+    }, cb);
+});
+
+gulp.task('beautify', ['nsp'], () => {
     return gulp.src('./src/**/*.js')
         .pipe(beautify())
         .pipe(gulp.dest('./src'));
@@ -27,34 +33,15 @@ gulp.task('beautify', ['clean'], () => {
 
 gulp.task('eslint', ['beautify'], () => {
     return gulp.src('./src/**/*.js')
-        .pipe(eslint())
+        .pipe(eslint({
+            useEslintrc: true
+        }))
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
 });
 
-const plugins = [
-    'transform-es2015-modules-commonjs',
-    'transform-runtime'
-];
-
-gulp.task('babel:src', ['eslint'], () => {
-    return gulp.src('./src/**/*.js')
-        .pipe(babel({
-            plugins: plugins
-        }))
-        .pipe(gulp.dest('build'));
-});
-
-gulp.task('babel:test', ['eslint'], () => {
-    return gulp.src('./test/**/*.js')
-        .pipe(babel({
-            plugins: plugins
-        }))
-        .pipe(gulp.dest('./test-build/test'));
-});
-
-gulp.task('cover', ['babel:src', 'babel:test'], () => {
-    return gulp.src('build/**/*.js')
+gulp.task('cover', ['eslint'], () => {
+    return gulp.src('src/**/*.js')
         .pipe(istanbul())
         .pipe(gulp.dest('test-build'));
 });

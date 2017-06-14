@@ -1,14 +1,11 @@
-import {
-    readFile
-} from 'fs'
-import promisify from 'es6-promisify'
+const fs = require('fs'),
+    promisify = require('es6-promisify'),
+    readFile = promisify(fs.readFile);
 
-const _readFile = promisify(readFile);
+module.exports = async(ctx) => {
+    const [packageJson, configJson] = await Promise.all([readFile('./package.json', 'utf-8'), readFile('./config/default.json', 'utf-8')]);
 
-export default function*() {
-    let [packageJson, configJson] = yield [_readFile('./package.json', 'utf-8'), _readFile('./config/default.json', 'utf-8')]
-
-    this.body = {
+    ctx.body = {
         id: this.params.id,
         packageJson: packageJson,
         config: configJson

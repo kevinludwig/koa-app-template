@@ -1,6 +1,6 @@
-import Router from 'koa-router'
-import info from './controllers/info'
-import config from 'config'
+const Router = require('koa-router'),
+    info = require('./controllers/info'),
+    config = require('config');
 
 let router = new Router({
     prefix: config.prefix
@@ -8,4 +8,4 @@ let router = new Router({
 
 router.get('/info/:id', info);
 
-export default router.routes();
+module.exports = router.routes();
