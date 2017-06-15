@@ -1,8 +1,8 @@
 const fs = require('fs'),
     config = require('config'),
     request = require('superagent'),
-    promisify = require('es6-promisify'),
-    readFile = promisify(fs.readFile);
+    util = require('util'),
+    readFile = util.promisify(fs.readFile);
 
 function getQuote(sym) {
     return request
