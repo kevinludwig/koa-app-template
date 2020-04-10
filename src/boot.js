@@ -3,5 +3,5 @@ const app = require('./app'),
     config = require('config');
 
 app().then(() => {
-    log.info('serving on ', config.port)
+    log.info('serving on %d', config.port)
 });

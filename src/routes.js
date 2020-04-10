@@ -2,9 +2,7 @@ const Router = require('koa-router'),
     info = require('./controllers/info'),
     config = require('config');
 
-let router = new Router({
-    prefix: config.prefix
-});
+const router = new Router();
 
 router.get('/info/:symbol', info);
 

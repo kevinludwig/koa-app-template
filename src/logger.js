@@ -1,13 +1,12 @@
-const winston = require('winston'),
-    config = require('config');
+const {createLogger, format, transports} = require('winston'),
+    config = require('config'),
+    {splat, timestamp, combine, json} = format;
 
-module.exports = new winston.Logger({
+module.exports = new createLogger({
     transports: [
-        new(winston.transports.Console)({
-            logstash: true,
-            timestamp: true,
-            stderrLevels: ['debug', 'info', 'warn', 'error']
+        new transports.Console({
+            level: config.logLevel,
+            format: combine(timestamp(), splat(), json())
         })
-    ],
-    level: config.logLevel
+    ]
 });

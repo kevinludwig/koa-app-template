@@ -1,13 +1,6 @@
 const Koa = require('koa'),
-    convert = require('koa-convert'),
     bodyParser = require('koa-bodyparser'),
-    helmet = require('koa-helmet'),
-    toobusy = require('koa-toobusy'),
-    responseTime = require('koa-response-time'),
-    kcors = require('kcors'),
-    gracefulShutdown = require('http-graceful-shutdown'),
-    ping = require('koa-ping'),
-    accesslog = require('koa-accesslog'),
+    cors = require('@koa/cors'),
     config = require('config'),
     log = require('./logger'),
     routes = require('./routes'),
@@ -22,22 +15,14 @@ app.use(async(ctx, next) => {
     }
 });
 
-app.use(responseTime());
-app.use(convert(accesslog()));
-app.use(convert(toobusy()));
-app.use(helmet());
 app.use(bodyParser());
-app.use(convert(kcors()));
-app.use(convert(ping(config.prefix + '/ping')));
+app.use(cors({
+    credentials: true
+}));
 app.use(routes);
 
 module.exports = () => {
     return new Promise((resolve) => {
-        const server = app.listen(config.port, () => {
-            gracefulShutdown(server, {
-                timeout: config.shutdownTimeout
-            });
-            resolve(server);
-        });
+        const server = app.listen(config.port, () => resolve(server));
     });
 }
