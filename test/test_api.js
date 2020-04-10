@@ -26,7 +26,7 @@ describe(config.prefix + '/info/:symbol', () => {
             .reply(200, {});
 
         const {body} = await request(server)
-            .get(`${config.prefix}/info/MSFT`)
+            .get('/info/MSFT')
             .expect(200);
         body.should.have.property('pkg');
         body.should.have.property('conf');
@@ -40,7 +40,7 @@ describe(config.prefix + '/info/:symbol', () => {
             .reply(500, {});
 
         const {body} = await request(server)
-            .get(`${config.prefix}/info/MSFT`)
+            .get('/info/MSFT')
             .expect(500);
         scope.isDone().should.be.eql(true);
     });
